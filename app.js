@@ -70,6 +70,19 @@ app.post("/rea", function(req,res){
 });
 
 
+app.post("/one", function(req,res){
+	var q = "select description as des, price as price, in_stock as stock, rating as rate from phoneshop where name= 'one plus 4' ";
+	connection.query(q, function(err, results){
+		if(err) throw err;
+		var des = results[0].des;
+		var price = results[0].price;
+		var stock = results[0].stock;
+		var rate = results[0].rate;
+		res.render("device",{des : des, price : price, stock : stock, rate : rate});
+	})
+	
+});
+
 app.listen(3000, function(){
 	console.log("Server running on port 3000");
 });
